@@ -1,0 +1,90 @@
+<a routerLink="/" class="back">← Back to search</a>
+
+@if (loadError(); as error) {
+  <p class="status error" role="alert">{{ error }}</p>
+}
+
+@if (member(); as m) {
+  <section class="panel">
+    <h2>{{ m.firstName }} {{ m.lastName }}</h2>
+    <dl class="facts">
+      <div><dt>Member #</dt><dd class="mono">{{ m.memberNumber }}</dd></div>
+      <div><dt>Employer</dt><dd>{{ m.employerName }}</dd></div>
+      <div><dt>Status</dt><dd><span class="pill" [class.inactive]="m.status === 'Inactive'">{{ m.status }}</span></dd></div>
+      <div><dt>Enrolled</dt><dd>{{ m.enrolledOn | date: 'mediumDate' }}</dd></div>
+      <div><dt>Total claimed</dt><dd class="num">{{ m.totalClaimed | currency: 'USD' }}</dd></div>
+    </dl>
+  </section>
+
+  <section class="panel">
+    <h3>Claims</h3>
+    @if (m.claims.length === 0) {
+      <p class="status">No claims yet.</p>
+    } @else {
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Claim #</th>
+              <th>Service date</th>
+              <th>Description</th>
+              <th class="num">Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (claim of m.claims; track claim.id) {
+              <tr>
+                <td class="mono">{{ claim.claimNumber }}</td>
+                <td>{{ claim.serviceDate | date: 'mediumDate' }}</td>
+                <td>{{ claim.description }}</td>
+                <td class="num">{{ claim.amount | currency: 'USD' }}</td>
+                <td><span class="pill" [class]="'pill ' + claim.status.toLowerCase()">{{ claim.status }}</span></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+
+  <section class="panel">
+    <h3>Submit a claim</h3>
+    <form [formGroup]="claimForm" (ngSubmit)="submitClaim()" novalidate class="claim-form">
+      <div class="field">
+        <label for="serviceDate">Service date</label>
+        <input id="serviceDate" type="date" formControlName="serviceDate" [max]="today" />
+        @if (showError('serviceDate')) {
+          <small class="error">Service date is required.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="amount">Amount (USD)</label>
+        <input id="amount" type="number" step="0.01" min="0.01" formControlName="amount" />
+        @if (showError('amount')) {
+          <small class="error">Enter an amount between $0.01 and $100,000.</small>
+        }
+      </div>
+
+      <div class="field wide">
+        <label for="description">Description</label>
+        <input id="description" type="text" maxlength="200" formControlName="description" />
+        @if (showError('description')) {
+          <small class="error">Description must be 3–200 characters.</small>
+        }
+      </div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="saving()">{{ saving() ? 'Submitting…' : 'Submit claim' }}</button>
+        @if (savedMessage(); as msg) {
+          <span class="ok" role="status">{{ msg }}</span>
+        }
+        @if (saveError(); as err) {
+          <span class="error" role="alert">{{ err }}</span>
+        }
+      </div>
+    </form>
+    <p class="hint">Claims of $500 or less are auto-approved by a background worker after about a minute.</p>
+  </section>
+}

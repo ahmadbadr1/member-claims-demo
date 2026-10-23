@@ -1,0 +1,18 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    # SQL Server images are x86_64. On Apple Silicon Macs, Docker Desktop runs it with
+    # Rosetta: Settings > General > "Use Rosetta for x86_64/amd64 emulation on Apple Silicon".
+    platform: linux/amd64
+    container_name: member-claims-sql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Demo_Passw0rd!"   # local demo only - never commit real passwords
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+
+volumes:
+  sqldata:

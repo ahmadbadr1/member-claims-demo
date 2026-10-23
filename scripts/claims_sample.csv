@@ -1,0 +1,12 @@
+member_number,service_date,amount,description
+M-100001,2026-09-14,125.00,Office visit
+m-100002 ,2026-09-20,"$1,250.50",Physical therapy
+M-100003,2026-10-02,64.20,Prescription
+M-100003,2026-10-02,64.20,Prescription
+M-100005,not-a-date,80.00,Lab work
+M-100006,2026-10-05,-15.00,Refund adjustment
+,2026-10-06,45.00,Office visit
+M-100008,2026-10-07,220.00,X
+M-100009,2099-01-01,99.00,Future-dated visit
+M-999999,2026-10-08,150.00,Specialist visit
+M-100010,2026-10-09,310.75,Urgent care

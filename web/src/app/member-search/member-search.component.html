@@ -1,0 +1,49 @@
+<section class="panel">
+  <label class="field-label" for="search">Search members</label>
+  <input
+    id="search"
+    type="search"
+    class="search-input"
+    placeholder="Last name, first name or member number (e.g. And, M-1000)"
+    autocomplete="off"
+    [formControl]="searchControl"
+  />
+  <p class="hint">Results update as you type. Requests are debounced and older ones are cancelled.</p>
+</section>
+
+@if (state$ | async; as state) {
+  @if (state.loading) {
+    <p class="status">Searching…</p>
+  } @else if (state.error) {
+    <p class="status error" role="alert">{{ state.error }}</p>
+  } @else if (state.result) {
+    <p class="status">{{ state.result.totalCount }} member(s) found</p>
+
+    @if (state.result.items.length > 0) {
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Member #</th>
+              <th>Name</th>
+              <th>Employer</th>
+              <th>Status</th>
+              <th class="num">Claims</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (member of state.result.items; track member.id) {
+              <tr>
+                <td class="mono">{{ member.memberNumber }}</td>
+                <td><a [routerLink]="['/members', member.id]">{{ member.fullName }}</a></td>
+                <td>{{ member.employerName }}</td>
+                <td><span class="pill" [class.inactive]="member.status === 'Inactive'">{{ member.status }}</span></td>
+                <td class="num">{{ member.claimCount }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  }
+}

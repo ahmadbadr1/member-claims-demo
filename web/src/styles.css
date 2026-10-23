@@ -1,0 +1,85 @@
+/* Global styles: a calm, readable admin look for a benefits/claims tool. */
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --ink: #17212b;
+  --muted: #5d6b78;
+  --line: #d6dde3;
+  --accent: #0e6e78;
+  --accent-soft: #d8eef0;
+  --ok: #1f7a3d;
+  --warn: #9a5b00;
+  --danger: #b42318;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: var(--accent); }
+
+.topbar {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.9rem max(16px, 2rem);
+  background: var(--ink);
+  color: #fff;
+}
+.brand { color: #fff; font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+.tag { color: #b8c4ce; font-size: 0.85rem; }
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.5rem max(16px, 2rem) 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+}
+.panel h2, .panel h3 { margin: 0 0 0.75rem; }
+
+.field-label { display: block; font-weight: 600; margin-bottom: 0.4rem; }
+.hint { color: var(--muted); font-size: 0.85rem; margin: 0.5rem 0 0; }
+.status { color: var(--muted); margin: 0; }
+.error { color: var(--danger); }
+.ok { color: var(--ok); }
+.back { text-decoration: none; font-size: 0.9rem; }
+
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+tbody tr:last-child td { border-bottom: none; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; }
+
+.pill { display: inline-block; padding: 0.1rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; background: var(--accent-soft); color: var(--accent); }
+.pill.inactive, .pill.denied { background: #fbe4e2; color: var(--danger); }
+.pill.submitted { background: #fdf0d9; color: var(--warn); }
+.pill.approved { background: #dff3e6; color: var(--ok); }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; margin: 0; }
+.facts dt { color: var(--muted); font-size: 0.8rem; }
+.facts dd { margin: 0.15rem 0 0; font-weight: 600; }
+
+.claim-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.9rem; }
+.field { display: flex; flex-direction: column; gap: 0.3rem; }
+.field.wide { grid-column: 1 / -1; }
+.field label { font-size: 0.85rem; font-weight: 600; }
+.field input { padding: 0.55rem 0.65rem; border: 1px solid var(--line); border-radius: 8px; font-size: 0.95rem; }
+.field input.ng-invalid.ng-touched { border-color: var(--danger); }
+.actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+button { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 0.6rem 1.1rem; font-weight: 600; font-size: 0.95rem; cursor: pointer; }
+button:disabled { opacity: 0.6; cursor: default; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+
+app-member-search, app-member-detail { display: flex; flex-direction: column; gap: 1rem; }
