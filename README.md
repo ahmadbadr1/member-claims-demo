@@ -111,6 +111,6 @@ EF Core migrations deployed as reviewed SQL scripts; authentication with Entra I
 ## Author
 
 **Ahmed Ibrahim** · Senior .NET / Full-Stack Developer
-[LinkedIn](https://www.linkedin.com/in/ahmed-ibrahim-151a21182) · ahmadbadr@gmail.com
+[LinkedIn](https://www.linkedin.com/in/ahmed-badr-ibrahim) · ahmadbadr@gmail.com
 
 Licensed under the [MIT License](LICENSE).
