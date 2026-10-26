@@ -1,3 +1,7 @@
+// Member Claims Demo
+// Copyright (c) 2026 Ahmed Ibrahim (https://www.linkedin.com/in/ahmed-ibrahim-151a21182)
+// Licensed under the MIT License. See LICENSE in the repository root.
+
 using MemberClaims.Api.Data;
 using MemberClaims.Api.Domain;
 using Microsoft.EntityFrameworkCore;

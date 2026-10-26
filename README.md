@@ -107,3 +107,10 @@ Rejected rows are written to `claims_sample_rejected.csv` with the reason for ea
 ## What I'd add for production
 
 EF Core migrations deployed as reviewed SQL scripts; authentication with Entra ID or Cognito plus policy-based authorization; structured logging (Serilog) and Application Insights or CloudWatch; integration tests with `WebApplicationFactory` and Testcontainers; and a CI pipeline (GitHub Actions) that builds, tests and deploys containers.
+
+## Author
+
+**Ahmed Ibrahim** · Senior .NET / Full-Stack Developer
+[LinkedIn](https://www.linkedin.com/in/ahmed-ibrahim-151a21182) · ahmadbadr@gmail.com
+
+Licensed under the [MIT License](LICENSE).
